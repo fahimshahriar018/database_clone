@@ -19,7 +19,7 @@ directory="/var/mysqldump"
 
 ## Dumping DB
 
-mysqldump -v --databases ${source_dbname} --single-transaction --host=${source_db_host} --user=${source_db_user} --password='devsdb&2019' --port=3306 > ${directory}/qorum_clone.sql
+mysqldump -v --databases ${source_dbname} --single-transaction --host=${source_db_host} --user=${source_db_user} --password='password' --port=3306 > ${directory}/qorum_clone.sql
 
 ### Check if dumping was successfull or not
 if [[ "${?}" -ne 0 ]]
@@ -31,7 +31,7 @@ fi
 
 ### Renaming database name and dump file
 
-dbfile="/var/mysqldump/qorum_clone.sql";
+dbfile="/var/mysqldump/db_clone.sql";
 dbname="qorum";
 dbnewname="qorum_dummy_production";
 dbnewfile="/var/mysqldump/${dbnewname}.sql";
@@ -57,17 +57,17 @@ fi
 
 ## Dummy Database Settings where we will clone Production DB
 
-destination_db_host="devs-db.cl0j9h0z9kwc.ap-southeast-1.rds.amazonaws.com"
-destination_db_user="devs"
-destination_db_password="devsdb&2019"
-destination_dbname="qorum_dummy_production"
+destination_db_host="db-host-endpoint"
+destination_db_user="username"
+destination_db_password="password"
+destination_dbname="db"
 
 # Directory settings
 #directory="/var/mysqldump"
 
 ## Restoring to dummy Database
 
-mysql -v  --host=${destination_db_host} --database=${destination_dbname}  --user=${destination_db_user} --password='devsdb&2019' --port=3306 <  ${directory}/qorum_dummy_production.sql
+mysql -v  --host=${destination_db_host} --database=${destination_dbname}  --user=${destination_db_user} --password='password' --port=3306 <  ${directory}/qorum_dummy_production.sql
 
 ### Check if restoring was successfull or not
 if [[ "${?}" -ne 0 ]]
