@@ -9,10 +9,10 @@ fi
 
 ## Production Database Settings from which we will dump Database
 
-source_db_host="devs-db.cl0j9h0z9kwc.ap-southeast-1.rds.amazonaws.com"
-source_db_user="devs"
-source_db_password="devsdb&2019"
-source_dbname="qorum"
+source_db_host="database-host-endpoint"
+source_db_user="username"
+source_db_password="password"
+source_dbname="db"
 
 # Directory settings
 directory="/var/mysqldump"
